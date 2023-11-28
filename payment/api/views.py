@@ -35,9 +35,28 @@ def verify_signature(signature, data, secret_key):
 @authentication_classes([])
 def request_view(req):
     data = json.loads(req.body)
-    # create a unique order id
-    data['order_id'] = int(datetime.datetime.now().timestamp() * 1000)
-    # data['order_id'] = 1699075379007
+    """
+    sample object
+    payment_request = {
+    'order_id': 1922658446,
+    'amount': 123,
+    'items': [
+        {
+            'name': 'Order item name',
+            'qty': '1',
+            'price': '123',
+        },
+    ],
+    'currency': 'usd',
+    'billing_fname': 'Mohi Uddin',
+    'billing_lname': 'Mahim',
+    'billing_email': 'mahim@gmail.com',
+    'redirect_to': 'http://localhost:3000/success',
+    'notify_url': 'http://localhost:4000/response',
+    'cancel_url': 'http://localhost:3000/cancel',
+    'type': 'php',
+}
+    """
     # sort the data according to keys
     sorted_data = {k: data[k] for k in sorted(data)}
     encoded_data = encode_dict(sorted_data)
