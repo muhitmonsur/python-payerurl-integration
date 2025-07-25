@@ -48,11 +48,11 @@ def request_view(req):
         },
     ],
     'currency': 'usd',
-    'billing_fname': 'Mohi Uddin',
-    'billing_lname': 'Mahim',
-    'billing_email': 'mahim@gmail.com',
+    'billing_fname': 'billing fname',
+    'billing_lname': 'billing lname',
+    'billing_email': 'test@gmail.com',
     'redirect_to': 'http://localhost:3000/success',
-    'notify_url': 'http://localhost:4000/response',
+    'notify_url': 'http://localhost:4000/response',  // PayerURL will send a callback to this URL once the payment is successfully completed.
     'cancel_url': 'http://localhost:3000/cancel',
     'type': 'php',
 }
@@ -63,7 +63,7 @@ def request_view(req):
     print(urlencode(encoded_data))
     args_string = urlencode(encoded_data)
     print(args_string)
-    secret_key = b"0a634fc47368f55f1f54e472283b3acd"
+    secret_key = "0a634fc47368f55f1f54e472283b3acd"
     public_key = "de1e85e8a087fed83e4a3ba9dfe36f08"
 
     signature = hmac.new(key=secret_key, msg=args_string.encode('utf-8'), digestmod=hashlib.sha256).hexdigest()
